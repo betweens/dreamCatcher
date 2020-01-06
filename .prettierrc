@@ -5,13 +5,12 @@
     "prettier/react",
     "prettier/standard"
   ],
-  "printWidth": 120,
   "tabWidth": 2,
   "useTabs": false,
   "semi": true,
   "singleQuote": true,
   "jsxSingleQuote": false,
-  "bracketSpacing": false,
+  "bracketSpacing": true,
   "jsxBracketSameLine": false,
-  "arrowParens": "always"
+  "trailingCooma": true
 }

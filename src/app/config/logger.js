@@ -8,7 +8,7 @@ const config = {
   name,
   level: process.env.LOG_LEVEL || (env === 'production' ? 'info' : 'debug'),
   // Supply paths to keys to redact sensitive information
-  redact: [],
+  redact: []
 };
 
 module.exports = config;

@@ -4,7 +4,7 @@
   "description": "无忧的时光 小程序",
   "main": "app.js",
   "scripts": {
-    "test": "start"
+    "start": "NODE_ENV=development nodemon src/app.js --quiet | pino-pretty -c -l -t"
   },
   "keywords": [
     "node",
@@ -31,6 +31,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
+    "nodemon": "^2.0.2",
     "pino-pretty": "^3.5.0",
     "prettier": "1.19.1",
     "pretty-quick": "^2.0.1"
