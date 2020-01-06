@@ -5,7 +5,8 @@ module.exports = {
     node: true,
   },
   extends: [
-    'airbnb-base'
+    'airbnb-base',
+    'plugin:prettier/recommended'
   ],
   globals: {
     Atomics: 'readonly',
@@ -35,5 +36,6 @@ module.exports = {
     "no-useless-constructor": 0,
     "import/no-unresolved": 0,
     "no-undef": 0,
+    "comma-dangle": [2, "never"]
   },
 };
