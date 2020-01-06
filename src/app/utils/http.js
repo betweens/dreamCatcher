@@ -1,9 +1,6 @@
-'use strict';
-
-const { isString, isUndefined } = require('util');
+const { isString } = require('util');
 const got = require('got');
 const debug = require('debug')('api:http');
-
 
 class HttpApi {
   constructor(options = {}) {
@@ -15,7 +12,7 @@ class HttpApi {
 
     debug('Create an instance');
 
-    const baseUrl = this.options.baseUrl;
+    const { baseUrl } = this.options;
     if (!(baseUrl && isString(baseUrl))) {
       throw new TypeError('`baseUrl` is required.');
     }
@@ -35,15 +32,6 @@ class HttpApi {
     const { statusCode, body } = await this.http(path, options);
     debug(`response: ${statusCode}`);
     return body;
-  }
-
-  _checkParams(params, required = []) {
-    const isSufficient = required.every(
-      param => !isUndefined(params[param])
-    );
-    if (!isSufficient) {
-      throw new Error(`Required Parameters: ${required}`);
-    }
   }
 }
 

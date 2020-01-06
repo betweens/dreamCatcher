@@ -1,6 +1,3 @@
-'use strict';
-
-
 /**
  * HTTP Status codes
  */
@@ -37,14 +34,13 @@ const toResponse = (statusCode, params = {}) => {
       data,
       message
     };
-  } else {
-    return {
-      status: statusCode < 500 ? 'fail' : 'error',
-      code,
-      data,
-      message
-    };
   }
+  return {
+    status: statusCode < 500 ? 'fail' : 'error',
+    code,
+    data,
+    message
+  };
 };
 
 /**
