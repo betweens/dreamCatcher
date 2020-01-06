@@ -19,7 +19,7 @@ app.use(cors({
   origins: corsConfig.origins,
   allowMethods: ['GET', 'HEAD', 'PUT', 'POST', 'DELETE', 'PATCH'],
   allowHeaders: ['Content-Type', 'Authorization'],
-  exposeHeaders: ['Content-Length', 'Date', 'X-Request-Id']
+  exposeHeaders: ['Content-Length', 'Date','X-Request-Id']
 }));
 
 app.use(router.routes());
