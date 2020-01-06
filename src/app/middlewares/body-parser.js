@@ -8,6 +8,6 @@ module.exports = (options = {}) => {
     ...options,
     options: () => {
       throw new InvalidRequestBodyFormat('Invalid format is detected in the request body');
-    }
+    },
   });
 };
