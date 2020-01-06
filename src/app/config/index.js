@@ -1,14 +1,14 @@
-const dotenv = require("dotenv");
+const dotenv = require('dotenv');
 
 // Load environment variables from .env file
 dotenv.config();
 
-const env = process.env.NODE_ENV || "development";
+const env = process.env.NODE_ENV || 'development';
 const configs = {
   base: {
     env,
-    name: process.env.APP_NAME || "Dreamer",
-    host: process.env.APP_HOST || "0.0.0.0",
+    name: process.env.APP_NAME || 'Dreamer',
+    host: process.env.APP_HOST || '0.0.0.0',
     port: 7070
   },
   production: {
