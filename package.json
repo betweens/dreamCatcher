@@ -1,0 +1,29 @@
+{
+  "name": "dreamer",
+  "version": "1.0.0",
+  "description": "无忧的时光 小程序",
+  "main": "app.js",
+  "scripts": {
+    "test": "start"
+  },
+  "keywords": [
+    "node",
+    "koa",
+    "mysql"
+  ],
+  "author": "humingfei",
+  "license": "ISC",
+  "dependencies": {
+    "@kasa/koa-logging": "^0.3.0",
+    "@kasa/koa-request-id": "^2.0.1",
+    "@koa/cors": "^3.0.0",
+    "@koa/router": "^8.0.5",
+    "dotenv": "^8.2.0",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "pino": "^5.15.0"
+  },
+  "devDependencies": {
+    "pino-pretty": "^3.5.0"
+  }
+}
