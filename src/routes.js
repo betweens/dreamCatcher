@@ -1,11 +1,10 @@
-'use strict'
+const KoaRouter = require("@koa/router");
 
-const koaRouter = require('@koa/router');
-const router = new koaRouter();
-router.get('/', (ctx) => {
+const router = new KoaRouter();
+router.get("/", ctx => {
   ctx.body = {
-    name: '1345'
-  }
+    name: "1345"
+  };
 });
 
 module.exports = router;
