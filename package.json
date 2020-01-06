@@ -19,7 +19,7 @@
     }
   },
   "lint-staged": {
-    "src/**/.{js}": [ "eslint" ]
+    "src/app/**/.{js}": [ "eslint  --fix" ]
   },
   "dependencies": {
     "@kasa/koa-logging": "^0.3.0",
