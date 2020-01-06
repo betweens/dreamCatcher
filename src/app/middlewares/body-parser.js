@@ -1,4 +1,3 @@
-'use strict';
 const debug = require('debug')('koa:bodyparser');
 const bodyParser = require('koa-bodyparser');
 const { InvalidRequestBodyFormat } = require('../errors');
@@ -10,5 +9,5 @@ module.exports = (options = {}) => {
     options: () => {
       throw new InvalidRequestBodyFormat('Invalid format is detected in the request body');
     }
-  })
-}
+  });
+};

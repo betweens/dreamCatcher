@@ -5,8 +5,7 @@ module.exports = {
     node: true,
   },
   extends: [
-    'airbnb-base',
-    'plugin:prettier/recommended'
+    'airbnb-base'
   ],
   globals: {
     Atomics: 'readonly',
@@ -25,6 +24,7 @@ module.exports = {
     ],
     "react/prop-types": 0,
     "react/jsx-closing-bracket-location": 0,
+    "import/no-extraneous-dependencies": 0,
     "max-len": ["error", {
       "ignoreTrailingComments": true,
       "code": 280
