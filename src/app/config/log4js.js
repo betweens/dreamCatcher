@@ -10,13 +10,22 @@ const config = {
       daysToKeep: 7
     }
   },
-  categories: {
-    default: { appenders: ['app'], level: 'all' }
-  }
+  categories: {},
+  disableClustering: true,
+  pm2: true,
+  pm2InstanceVar: 'INSTANCE_ID'
 };
 
 if (env === 'development') {
-  config.categories.default.appenders = ['out'];
+  config.categories.default = {
+    appenders: ['out'],
+    level: 'all'
+  };
+} else {
+  config.categories.default = {
+    appenders: ['app'],
+    level: 'all'
+  };
 }
 
 module.exports = config;
