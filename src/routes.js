@@ -1,9 +1,7 @@
 const KoaRouter = require('@koa/router');
-const logger = require('./logger');
 
 const router = new KoaRouter();
-router.get('/', ctx => {
-  logger.info(ctx);
+router.post('/', ctx => {
   ctx.body = {
     name: '1345'
   };

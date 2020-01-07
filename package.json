@@ -4,7 +4,7 @@
   "description": "无忧的时光 小程序",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=development nodemon src/app.js --quiet | pino-pretty -c -l -t"
+    "start": "NODE_ENV=development nodemon src/app.js --quiet"
   },
   "keywords": [
     "node",
@@ -14,14 +14,13 @@
   "author": "humingfei",
   "license": "ISC",
   "dependencies": {
-    "@kasa/koa-logging": "^0.3.0",
     "@kasa/koa-request-id": "^2.0.1",
     "@koa/cors": "^3.0.0",
     "@koa/router": "^8.0.5",
     "dotenv": "^8.2.0",
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.2.1",
-    "pino": "^5.15.0"
+    "log4js": "^6.1.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
@@ -32,7 +31,6 @@
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
     "nodemon": "^2.0.2",
-    "pino-pretty": "^3.5.0",
     "prettier": "1.19.1",
     "pretty-quick": "^2.0.1"
   }

@@ -1,18 +1,16 @@
 const Koa = require('koa');
-const logging = require('@kasa/koa-logging');
 const requestId = require('@kasa/koa-request-id');
 const bodyParser = require('./app/middlewares/body-parser');
 const cors = require('./app/middlewares/cors');
 const errorHandler = require('./app/middlewares/error-handler');
 const corsConfig = require('./app/config/cors');
 const config = require('./app/config/index');
-const logger = require('./logger');
 const router = require('./routes');
+const logger = require('./app/utils/logger');
 
 const app = new Koa();
 app.use(errorHandler());
 app.use(requestId());
-app.use(logging({ logger, overrideSerializers: false }));
 app.use(bodyParser({ enableTypes: ['json'], jsonLimit: '10mb' }));
 app.use(
   cors({
@@ -23,18 +21,40 @@ app.use(
   })
 );
 
+app.use(async (ctx, next) => {
+  const start = Date.now();
+  const { method, url, host, headers, ip, query, body } = ctx.request;
+  let client = {
+    method,
+    url,
+    host,
+    ip,
+    referer: headers.referer,
+    userAgent: headers['user-agent'],
+    query,
+    body
+  };
+  client = JSON.stringify(client);
+  logger.info(`request info: ${client}`);
+  await next();
+  const responseTime = Date.now() - start;
+  logger.info(
+    `respones time${responseTime / 1000}s, respones data: ${JSON.stringify(
+      ctx.body
+    )}`
+  );
+});
+
 app.use(router.routes());
 app.use(router.allowedMethods());
 
 const server = app.listen(config.port, config.host, () => {
-  logger.info(
-    { event: 'execute' },
-    `API server listening on http://${config.host}:${config.port}, in ${config.env}`
-  );
+  const serverInfo = `API server listening on http://${config.host}:${config.port}, in ${config.env}`;
+  logger.info(serverInfo);
 });
 
-server.on('error', ctx => {
+server.on('error', (err, ctx) => {
   if (ctx == null) {
-    logger.error({ err, event: 'error' }, 'Unhandled exception occured');
+    logger.error(`Unhandled exception occured${err}`);
   }
 });
