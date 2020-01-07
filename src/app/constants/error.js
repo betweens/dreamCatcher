@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Client Failures
  */
@@ -32,7 +30,6 @@ module.exports.INVALID_REQUEST = {
   code: 'INVALID_REQUEST',
   message: 'The request has invalid parameters.'
 };
-
 
 /**
  * Server Errors

@@ -1,11 +1,12 @@
 const Koa = require('koa');
+const requireDirectory = require('require-directory');
+const KoaRouter = require('@koa/router');
 const requestId = require('@kasa/koa-request-id');
 const bodyParser = require('./app/middlewares/body-parser');
 const cors = require('./app/middlewares/cors');
 const errorHandler = require('./app/middlewares/error-handler');
 const corsConfig = require('./app/config/cors');
 const config = require('./app/config/index');
-const router = require('./routes');
 const logger = require('./app/utils/logger');
 
 const app = new Koa();
@@ -45,8 +46,14 @@ app.use(async (ctx, next) => {
   );
 });
 
-app.use(router.routes());
-app.use(router.allowedMethods());
+// 加载路由
+requireDirectory(module, './app/controllers', {
+  visit: obj => {
+    if (obj instanceof KoaRouter) {
+      app.use(obj.routes(), obj.allowedMethods());
+    }
+  }
+});
 
 const server = app.listen(config.port, config.host, () => {
   const serverInfo = `API server listening on http://${config.host}:${config.port}, in ${config.env}`;
