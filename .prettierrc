@@ -5,6 +5,7 @@
     "prettier/react",
     "prettier/standard"
   ],
+
   "proseWrap": "never",
   "tabWidth": 2,
   "useTabs": false,

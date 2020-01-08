@@ -1,5 +1,7 @@
 const cors = require('@koa/cors');
-const logger = require('../utils/logger');
+let logger = require('../utils/logger');
+
+logger = logger('middlewares:cors.js');
 
 module.exports = (options = {}) => {
   const { origins = ['*'] } = options;

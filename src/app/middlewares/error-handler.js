@@ -1,6 +1,8 @@
 const Response = require('../utils/response');
 const { InvalidRequestBodyFormat } = require('../errors');
-const logger = require('../utils/logger');
+let logger = require('../utils/logger');
+
+logger = logger('middlewares:error-handler.js');
 
 const {
   UNKNOWN_ENDPOINT,

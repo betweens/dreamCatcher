@@ -36,6 +36,8 @@ module.exports = {
     "no-useless-constructor": 0,
     "import/no-unresolved": 0,
     "no-undef": 0,
-    "comma-dangle": [2, "never"]
+    "comma-dangle": [2, "never"],
+    "func-style": 0,
+    "consistent-return": 0
   },
 };

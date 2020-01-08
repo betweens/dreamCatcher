@@ -1,7 +1,8 @@
 const { isString } = require('util');
 const got = require('got');
-const logger = require('../utils/logger');
+let logger = require('../utils/logger');
 
+logger = logger('http');
 class HttpApi {
   constructor(options = {}) {
     this.options = {

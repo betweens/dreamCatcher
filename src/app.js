@@ -7,7 +7,9 @@ const cors = require('./app/middlewares/cors');
 const errorHandler = require('./app/middlewares/error-handler');
 const corsConfig = require('./app/config/cors');
 const config = require('./app/config/index');
-const logger = require('./app/utils/logger');
+let logger = require('./app/utils/logger');
+
+logger = logger('app');
 
 const app = new Koa();
 app.use(errorHandler());
@@ -24,14 +26,14 @@ app.use(
 
 app.use(async (ctx, next) => {
   const start = Date.now();
-  const { method, url, host, headers, ip, query, body } = ctx.request;
+  const { method, url, host, ip, query, body } = ctx.request;
   let client = {
     method,
     url,
     host,
     ip,
-    referer: headers.referer,
-    userAgent: headers['user-agent'],
+    // referer: headers.referer,
+    // userAgent: headers['user-agent'],
     query,
     body
   };
@@ -40,9 +42,8 @@ app.use(async (ctx, next) => {
   await next();
   const responseTime = Date.now() - start;
   logger.info(
-    `respones time${responseTime / 1000}s, respones data: ${JSON.stringify(
-      ctx.body
-    )}`
+    `respones info: time: ${responseTime /
+      1000}s, respones data: ${JSON.stringify(ctx.body)}`
   );
 });
 

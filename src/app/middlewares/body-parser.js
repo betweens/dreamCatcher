@@ -1,6 +1,8 @@
 const bodyParser = require('koa-bodyparser');
 const { InvalidRequestBodyFormat } = require('../errors');
-const logger = require('../utils/logger');
+let logger = require('../utils/logger');
+
+logger = logger('middlewares:body-parser.js');
 
 module.exports = (options = {}) => {
   return bodyParser({
