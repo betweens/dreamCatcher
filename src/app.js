@@ -7,10 +7,10 @@ const cors = require('./app/middlewares/cors');
 const errorHandler = require('./app/middlewares/error-handler');
 const corsConfig = require('./app/config/cors');
 const config = require('./app/config/index');
+const auth = require('./app/middlewares/auth');
 let logger = require('./app/utils/logger');
 
 logger = logger('app');
-
 const app = new Koa();
 app.use(errorHandler());
 app.use(requestId());
@@ -23,7 +23,7 @@ app.use(
     exposeHeaders: ['Content-Length', 'Date', 'X-Request-Id']
   })
 );
-
+app.use(auth.unless({ path: ['/login', '/'] }));
 app.use(async (ctx, next) => {
   const start = Date.now();
   const { method, url, host, ip, query, body } = ctx.request;
