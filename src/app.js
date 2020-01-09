@@ -23,7 +23,7 @@ app.use(
     exposeHeaders: ['Content-Length', 'Date', 'X-Request-Id']
   })
 );
-app.use(auth.unless({ path: ['/login', '/'] }));
+app.use(auth.unless({ path: ['/', '/login', '/register'] }));
 app.use(async (ctx, next) => {
   const start = Date.now();
   const { method, url, host, ip, query, body } = ctx.request;

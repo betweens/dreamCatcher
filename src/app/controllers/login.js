@@ -6,7 +6,7 @@ const Response = require('../utils/response');
 let logger = require('../utils/logger');
 
 logger = logger('controllers:login.js');
-const { userLogin } = userServers;
+const { userLogin, userRegister, cancelUser } = userServers;
 const router = new KoaRouter();
 
 router.post('/login', async ctx => {
@@ -42,10 +42,16 @@ router.post('/login', async ctx => {
   }
 });
 
-router.post('/test', ctx => {
-  ctx.body = {
-    name: ctx.state.user
-  };
+router.post('/register', async ctx => {
+  const { username, password, sex, age } = ctx.request.body;
+  const result = await userRegister(username, password, sex, age);
+  ctx.body = result;
+});
+
+router.get('/cancel-user/:id', async ctx => {
+  const userId = ctx.params;
+  const result = await cancelUser(userId.id);
+  ctx.body = result;
 });
 
 module.exports = router;
