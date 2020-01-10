@@ -23,7 +23,7 @@ app.use(
     exposeHeaders: ['Content-Length', 'Date', 'X-Request-Id']
   })
 );
-app.use(auth.unless({ path: ['/', '/login', '/register'] }));
+
 app.use(async (ctx, next) => {
   const start = Date.now();
   const { method, url, host, ip, query, body } = ctx.request;
@@ -35,7 +35,8 @@ app.use(async (ctx, next) => {
     // referer: headers.referer,
     // userAgent: headers['user-agent'],
     query,
-    body
+    body,
+    token: ctx.get('X-request-Token')
   };
   client = JSON.stringify(client);
   logger.info(`request info: ${client}`);
@@ -43,6 +44,8 @@ app.use(async (ctx, next) => {
   const responseTime = Date.now() - start;
   logger.info(`respones info: time: ${responseTime / 1000}s, respones data: ${JSON.stringify(ctx.body)}`);
 });
+
+app.use(auth.unless({ path: ['/', '/login', '/register'] }));
 
 // 加载路由
 requireDirectory(module, './app/controllers', {

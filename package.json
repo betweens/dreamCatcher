@@ -4,7 +4,8 @@
   "description": "无忧的时光 小程序",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=development nodemon src/app.js --quiet"
+    "start": "NODE_ENV=development nodemon src/app.js --quiet",
+    "publish": "NODE_ENV=product nodemon src/app.js"
   },
   "keywords": [
     "node",
@@ -37,5 +38,12 @@
     "nodemon": "^2.0.2",
     "prettier": "1.19.1",
     "pretty-quick": "^2.0.1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "node_modules/*",
+      "logs/*"
+    ],
+    "delay": "2500"
   }
 }

@@ -34,7 +34,7 @@ router.post('/login', async ctx => {
         });
       }
       return Response.forbidden(ctx, {
-        message: '用户注销，不能使用',
+        message: '无效用户',
         data: null
       });
     }
