@@ -41,10 +41,7 @@ app.use(async (ctx, next) => {
   logger.info(`request info: ${client}`);
   await next();
   const responseTime = Date.now() - start;
-  logger.info(
-    `respones info: time: ${responseTime /
-      1000}s, respones data: ${JSON.stringify(ctx.body)}`
-  );
+  logger.info(`respones info: time: ${responseTime / 1000}s, respones data: ${JSON.stringify(ctx.body)}`);
 });
 
 // 加载路由

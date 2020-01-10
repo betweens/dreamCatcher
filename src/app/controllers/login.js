@@ -20,16 +20,22 @@ router.post('/login', async ctx => {
     }
     const result = await userLogin(username);
     if (result.length) {
-      const { id, name } = result[0];
+      const { id, name, isvolid } = result[0];
       const userInfo = {
         id,
         name
       };
-      const token = tokenGenerator(userInfo);
-      return Response.ok(ctx, {
-        message: 'success',
-        code: '0000',
-        data: { ...userInfo, token }
+      if (isvolid) {
+        const token = tokenGenerator(userInfo);
+        return Response.ok(ctx, {
+          message: 'success',
+          code: '0000',
+          data: { ...userInfo, token }
+        });
+      }
+      return Response.forbidden(ctx, {
+        message: '用户注销，不能使用',
+        data: null
       });
     }
     return Response.forbidden(ctx, {
@@ -48,9 +54,9 @@ router.post('/register', async ctx => {
   ctx.body = result;
 });
 
-router.get('/cancel-user/:id', async ctx => {
-  const userId = ctx.params;
-  const result = await cancelUser(userId.id);
+router.get('/cancel-user', async ctx => {
+  const { id } = ctx.state.user;
+  const result = await cancelUser(id);
   ctx.body = result;
 });
 

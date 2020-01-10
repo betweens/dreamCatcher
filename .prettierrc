@@ -5,13 +5,13 @@
     "prettier/react",
     "prettier/standard"
   ],
-  "proseWrap": "never",
+  "printWidth": 200,
+  "proseWrap": "preserve",
   "tabWidth": 2,
   "useTabs": false,
   "semi": true,
   "singleQuote": true,
   "jsxSingleQuote": false,
   "bracketSpacing": true,
-  "jsxBracketSameLine": false,
-  "trailingCooma": true
+  "jsxBracketSameLine": false
 }
