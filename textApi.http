@@ -1,0 +1,15 @@
+#######  登陆
+POST http://localhost:7070/login
+Content-Type: application/json
+
+{
+  "username": "胡明飞"
+}
+
+
+
+####### 注销
+
+GET  http://localhost:7070/cancel-user
+Content-Type: application/json
+X-Request-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IuiDoeaYjumjniIsImlhdCI6MTU3ODg4MjE4OSwiZXhwIjoxNTc4ODg1Nzg5fQ.GbukgBaYyvl5aVxEPfvwqqX1CawJWkhdnVbwxrUOgL4

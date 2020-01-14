@@ -57,7 +57,14 @@ router.post('/register', async ctx => {
 router.get('/cancel-user', async ctx => {
   const { id } = ctx.state.user;
   const result = await cancelUser(id);
-  ctx.body = result;
+  if (result) {
+    ctx.redirect('https://www.baidu.com');
+  } else {
+    Response.ok(ctx, {
+      message: '注销失败',
+      data: null
+    });
+  }
 });
 
 module.exports = router;
