@@ -29,14 +29,14 @@ app.use(async (ctx, next) => {
   const { method, url, host, ip, query, body } = ctx.request;
   let client = {
     method,
-    url,
+    url: decodeURIComponent(url),
     host,
     ip,
     // referer: headers.referer,
     // userAgent: headers['user-agent'],
     query,
-    body,
-    token: ctx.get('X-request-Token')
+    body
+    // token: ctx.get('X-request-Token')
   };
   client = JSON.stringify(client);
   logger.info(`request info: ${client}`);
